@@ -1,17 +1,29 @@
-const getAllItems = (req, res) => {
-  res.send('all items');
-};
-const getTask = (req, res) => {
-  console.log(req.params.taskId);
-  req.user = {
-    user: 'usman',
-    age: 25,
-  };
+const Task = require('../models/tasksModal');
 
-  res.json({ id: req.params.taskId });
+const getAllItems = async (req, res) => {
+  try {
+    const allTasks = await Task.find({});
+    res.status(200).json({ allTasks });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+const getTask = async (req, res) => {
+  try {
+    const allTasks = await Task.find({});
+    res.status(200).json({ allTasks });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
 };
 const createTask = async (req, res) => {
-  res.status(201).json({ task: `${req.body.name} created'` });
+  try {
+    const task = await Task.create(req.body);
+    console.log(task);
+    res.status(201).json({ task });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
 };
 
 const updateTask = (req, res) => {
