@@ -10,8 +10,12 @@ const getAllItems = async (req, res) => {
 };
 const getTask = async (req, res) => {
   try {
-    const allTasks = await Task.find({});
-    res.status(200).json({ allTasks });
+    const taskId = req.params.taskId;
+    const task = await Task.findOne({ _id: taskId });
+    if (!task) {
+      return res.status(404).json({ msg: `no Task with ${taskId}` });
+    }
+    res.status(200).json({ task });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
