@@ -3,8 +3,9 @@ const Task = require('../models/tasksModal');
 const getAllItems = async (req, res) => {
   try {
     const allTasks = await Task.find({});
-    const t = allTasks.length;
-    res.status(200).json({ allTasks, t });
+    // const t = allTasks.length;
+    const tasks = allTasks;
+    res.status(200).json({ tasks });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -22,7 +23,7 @@ const getTask = async (req, res) => {
 const createTask = async (req, res) => {
   try {
     const task = await Task.create(req.body);
-    console.log(task);
+    // console.log(task);
     res.status(201).json({ task });
   } catch (error) {
     res.status(500).json({ msg: error.message });
