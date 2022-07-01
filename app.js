@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 const tasks = require('./routes/tasks');
+
 const connectDB = require('./db/connect');
 require('dotenv').config();
 const notFound = require('./middleware/notFound');
@@ -30,8 +31,10 @@ const start = async () => {
 };
 
 start();
-// //get: api/v1/tasks
-// //post: api/v1/tasks
-// //get:api/v1/tasks/:taskId
-// //post: api/v1/tasks/:taskId
-// //delete: api/v1/tasks/:taskId
+
+// routes
+//get: api/v1/tasks
+//post: api/v1/tasks
+//get:api/v1/tasks/:taskId
+//post: api/v1/tasks/:taskId
+//delete: api/v1/tasks/:taskId
